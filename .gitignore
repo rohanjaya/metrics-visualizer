@@ -1,0 +1,6 @@
+# meson artifacts
+build/*
+builddir/*
+
+# dev settings
+.vscode/*

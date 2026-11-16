@@ -39,7 +39,7 @@ class CpuUsageCollector {
     + collect(): std::optional<Metric>
 }
 
-class MetricService {
+class MetricsService {
     + start(): void
     + stop(): void
 }
@@ -63,10 +63,10 @@ class MetricsHttpServer {
 IMetricCollector <|.. CpuUsageCollector
 IMetricRepository <|.. SqliteMetricRepository
 
-MetricService *-- IMetricCollector
-MetricService *-- MetricRecorder
-MetricService *-- MetricsHttpServer
-MetricService *-- SqliteMetricRepository
+MetricsService *-- IMetricCollector
+MetricsService *-- MetricRecorder
+MetricsService *-- MetricsHttpServer
+MetricsService *-- SqliteMetricRepository
 
 MetricRecorder --> IMetricRepository : Writes
 MetricsHttpServer --> IMetricRepository : Reads
