@@ -42,6 +42,7 @@ class CpuUsageCollector {
 class MetricsService {
     + start(): void
     + stop(): void
+    - m_webServer: httplib::Server
 }
 
 class MetricRecorder {

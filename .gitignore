@@ -1,6 +1,8 @@
 # meson artifacts
 build/*
 builddir/*
+/subprojects/*/
+subprojects/.wraplock
 
 # dev settings
 .vscode/*
