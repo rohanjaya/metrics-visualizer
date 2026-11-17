@@ -3,7 +3,7 @@
 #include <utility>
 
 IMetricCollector::IMetricCollector(
-    std::function<void(const NamedMetric&)> recordCallback,
+    std::function<void(NamedMetric&&)> recordCallback,
     std::string label,
     std::chrono::milliseconds collectRate,
     std::chrono::milliseconds collectTimeout
@@ -46,11 +46,11 @@ void IMetricCollector::stop()
     }
 }
 
-void IMetricCollector::recordMetric(const NamedMetric& metric)
+void IMetricCollector::recordMetric(NamedMetric&& metric)
 {
     if (m_recordCallback && metric.metric)
     {
-        m_recordCallback(metric);
+        m_recordCallback(std::move(metric));
     }
 }
 
@@ -63,7 +63,7 @@ void IMetricCollector::run()
         m_metric.metric = std::move(metric);
         NamedMetric recordCpy = m_metric;
         lock.unlock();
-        recordMetric(recordCpy);
+        recordMetric(std::move(recordCpy));
         std::this_thread::sleep_for(m_collectRate);
     }
 }
