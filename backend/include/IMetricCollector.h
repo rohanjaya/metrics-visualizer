@@ -24,7 +24,7 @@ class IMetricCollector
 {
 public:
     explicit IMetricCollector(
-        std::function<void(NamedMetric)> recordCallback,
+        std::function<void(const NamedMetric&)> recordCallback,
         std::string label,
         std::chrono::milliseconds collectRate,
         std::chrono::milliseconds collectTimeout
@@ -51,7 +51,7 @@ private:
 
     std::mutex m_metricMutex;
     NamedMetric m_metric;
-    std::function<void(NamedMetric)> m_recordCallback;
+    std::function<void(const NamedMetric&)> m_recordCallback;
 
     std::chrono::milliseconds m_collectRate;
     std::chrono::milliseconds m_collectTimeout;

@@ -3,7 +3,7 @@
 #include <utility>
 
 IMetricCollector::IMetricCollector(
-    std::function<void(NamedMetric)> recordCallback,
+    std::function<void(const NamedMetric&)> recordCallback,
     std::string label,
     std::chrono::milliseconds collectRate,
     std::chrono::milliseconds collectTimeout
