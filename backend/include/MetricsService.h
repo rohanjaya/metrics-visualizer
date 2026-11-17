@@ -1,5 +1,7 @@
 #include <httplib.h>
 
+#include "IMetricCollector.h"
+
 class MetricsService
 {
 

@@ -22,12 +22,10 @@ Backend <--> DB : Data recording
 
 ## Backend Classes
 
-
 @startuml
 
 class Metric {
-    + timestamp: std::chrono::system_clock::time_point
-    + name: std::string
+    + ts: std::chrono::system_clock::time_point
     + measurement: double
 }
 
