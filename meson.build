@@ -9,6 +9,7 @@ spdlog_dep = dependency('spdlog', required : true)
 
 executable('metrics-service',
   'backend/src/main.cpp',
+  'backend/src/IMetricCollector.cpp',
   include_directories: include_directories('backend/include'),
   dependencies: [httplib_dep, pugixml_dep, spdlog_dep]
 )

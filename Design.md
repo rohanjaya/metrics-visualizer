@@ -26,15 +26,25 @@ Backend <--> DB : Data recording
 
 class Metric {
     + ts: std::chrono::system_clock::time_point
-    + measurement: double
+    + value: double
 }
 
-interface IMetricCollector {
-    + collect(): std::optional<Metric>
+class NamedMetric {
+    + metric: std::optional<Metric>
+    + name: std::string
+}
+
+abstract class IMetricCollector {
+    + takeLatest(): NamedMetric
+    # start(): void
+    # stop(): void
+    - {abstract} collect(timeout: std::chrono::milliseconds): std::optional<Metric> noexcept
+    - recordMetric(metric: const NamedMetric&): void
+    - run(): void
 }
 
 class CpuUsageCollector {
-    + collect(): std::optional<Metric>
+    - collect(timeout: std::chrono::milliseconds): std::optional<Metric> noexcept
 }
 
 class MetricsService {
@@ -59,7 +69,9 @@ class SqliteMetricRepository {
 class MetricsHttpServer {
 }
 
-IMetricCollector <|.. CpuUsageCollector
+IMetricCollector <|-- CpuUsageCollector
+IMetricCollector *-- NamedMetric
+NamedMetric *-- Metric
 IMetricRepository <|.. SqliteMetricRepository
 
 MetricsService *-- IMetricCollector
@@ -71,4 +83,3 @@ MetricRecorder --> IMetricRepository : Writes
 MetricsHttpServer --> IMetricRepository : Reads
 
 @enduml
- 
