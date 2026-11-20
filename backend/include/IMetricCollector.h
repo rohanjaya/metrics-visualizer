@@ -26,8 +26,7 @@ public:
     explicit IMetricCollector(
         std::function<void(NamedMetric&&)> recordCallback,
         std::string label,
-        std::chrono::milliseconds collectRate,
-        std::chrono::milliseconds collectTimeout
+        std::chrono::milliseconds collectRate
     );
 
     virtual ~IMetricCollector();
@@ -44,7 +43,7 @@ protected:
     void stop();
 
 private:
-    virtual std::optional<Metric> collect(std::chrono::milliseconds timeout) noexcept = 0;
+    virtual std::optional<Metric> collect() noexcept = 0;
 
     void recordMetric(NamedMetric&& metric);
     void run();

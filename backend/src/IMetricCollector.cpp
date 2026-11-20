@@ -5,13 +5,11 @@
 IMetricCollector::IMetricCollector(
     std::function<void(NamedMetric&&)> recordCallback,
     std::string label,
-    std::chrono::milliseconds collectRate,
-    std::chrono::milliseconds collectTimeout
+    std::chrono::milliseconds collectRate
 ) :
     m_metric{std::nullopt, std::move(label)},
     m_recordCallback(std::move(recordCallback)),
-    m_collectRate(collectRate),
-    m_collectTimeout(collectTimeout)
+    m_collectRate(collectRate)
 {
 }
 
@@ -58,7 +56,7 @@ void IMetricCollector::run()
 {
     while (m_running)
     {
-        auto metric = collect(m_collectTimeout);
+        auto metric = collect();
         std::unique_lock lock(m_metricMutex);
         m_metric.metric = std::move(metric);
         NamedMetric recordCpy = m_metric;
