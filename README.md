@@ -2,7 +2,7 @@
 
 ## Project Objective
 
-The objective of this project is to gain exposure to Typescript + Vue.js, while also reinforcing C++ design skills.
+The objective of this project is to gain exposure to Solid 2.0 + Vue.js, while also reinforcing C++ design skills.
 
 ## Overview
 
@@ -11,7 +11,7 @@ The Metrics Visualizer application will allow 1 or more metric categories to be 
 ## Tech Stack
 
 @startuml
-component "Vue + Typescript Frontend" as Frontend
+component "Solid 2.0 Frontend" as Frontend
 component "C++ Backend" as Backend
 database "SQLite" as DB
 
