@@ -6,7 +6,10 @@ spdlog_dep = dependency('spdlog', required : true)
 threads_dep = dependency('threads')
 
 backend_inc = include_directories('include')
-backend_src = files('src/IMetricCollector.cpp')
+backend_src = files(
+    'src/IMetricCollector.cpp',
+    'src/MetricsHttpServer.cpp'
+)
 backend_deps = [
     httplib_dep,
     pugixml_dep,

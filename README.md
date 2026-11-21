@@ -50,7 +50,7 @@ class CpuUsageCollector {
 class MetricsService {
     + start(): void
     + stop(): void
-    - m_webServer: httplib::Server
+    - m_server: MetricsHttpServer
 }
 
 class MetricRecorder {
@@ -67,6 +67,7 @@ class SqliteMetricRepository {
 }
 
 class MetricsHttpServer {
+    - m_webServer: httplib::Server
 }
 
 IMetricCollector <|-- CpuUsageCollector

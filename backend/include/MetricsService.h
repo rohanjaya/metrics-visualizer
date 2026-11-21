@@ -1,10 +1,9 @@
-#include <httplib.h>
-
 #include "IMetricCollector.h"
+#include "MetricsHttpServer.h"
 
 class MetricsService
 {
 
 private:
-    httplib::Server m_webServer;
+    MetricsHttpServer m_server;
 };
